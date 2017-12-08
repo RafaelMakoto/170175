@@ -8,8 +8,8 @@ public class Hello extends JFrame{
 	
 	Hello(String title){
 		setTitle(title);
-		setSize(200,200);
-		setLocation(400,400);
+		setSize(2000,2000);
+		setLocation(0,0);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JButton btn = new JButton("Click ME");
