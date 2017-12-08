@@ -12,7 +12,7 @@ public class UserReg extends JFrame{
 		setTitle(title);
 		setSize(500,500);
 		setLocation(500,500);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOCE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(2,2));
@@ -28,7 +28,7 @@ public class UserReg extends JFrame{
 		panel.add(jpf);
 
 		Container cp = getContentPane();
-		cp.add(panel.BorderLayout.NORTH);
+		cp.add(panel,BorderLayout.NORTH);
 	}
 
 	public static void main(String[] args){
