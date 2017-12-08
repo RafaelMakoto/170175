@@ -5,7 +5,7 @@ import javax.swing.JPasswordFild;
 import java.awt.Container;
 import java.awt.Borderlayout;
 
-public class TestJPasswordFild{
+public class TestJPasswordFild extends JFrame{
 	TestJPasswordFild(String title){
 
 		setTitle(title);
