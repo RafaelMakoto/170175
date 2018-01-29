@@ -4,24 +4,24 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
+import javax.swing.JPasswordField;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.FileReader;
+import java.awt.GridLayout;
 import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Guilnput extends JFrame implements ActionListener{
+public class Guilnput extends JFrame {
 	//data
 	private JTextField field;
 	//method
-	public void actionPerformed(ActionEvent e){
-		this.field.setText("ALOHA!");
-	}
+
 	Guilnput(String title){
 		setTitle(title);
 		setSize(500,500);
@@ -29,20 +29,16 @@ public class Guilnput extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
-		JButton btn = new JButton("CLIIK");
-		btn.addActionListener(this);
+		
+		JLabel lbl = new JLabel("mail");
+		JLabel lbl2 = new JLabel("");
+		JTextField jtf = new JTextField("",20); 
 
-		this.field = new JTextField("Hello", 15);
-
-		JCheckBox a1 = new JCheckBox("A");
-		JCheckBox b2 = new JCheckBox("B");
-		JCheckBox c3 = new JCheckBox("C");
-
-		panel.add(a1);
-		panel.add(b2);
-		panel.add(c3);
-		panel.add(btn);
-		panel.add(this.field);
+		panel.add(lbl);
+		panel.add(lbl2);
+		
+		panel.setLayout(new GridLayout(2,2));
+		panel.add(jtf,BorderLayout.NORTH);
 
 		Container cp = getContentPane();
 		cp.add(panel,BorderLayout.NORTH);
