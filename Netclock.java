@@ -1,46 +1,53 @@
-  import java.net.Socket;
-  import java.io.IOException;
-  import java.io.InputStream;
-  import java.io.InputStreamReader;
-  import java.io.BufferedReader;
-  
-  public class Netclock {
-  	// data
-  	// method
-  	// main
-  	public static void main (String[] args) {
-  		// 変数宣言
-  		Socket sock = null;
-  		InputStream is = null;
-  		InputStreamReader isr = null;
-  		BufferedReader br = null;
-  
-  		// サーバに接続して～する
-  		try {
-  			// IPアドレスとポート番号を取得する
-  			String ipAddr = args[0];
-  			int portNum = Integer.parseInt(args[1]);
-  
-  			// サーバに接続する
-  			sock = new Socket(ipAddr, portNum);
-  			System.out.println("サーバに接続しました.");
-  
-  			// 入力ストリームを取得する
-  			is = sock.getInputStream();
-  			// InputStreamReaderを生成する
-  			isr = new InputStreamReader(is);
-  			// BufferedReaderを生成する
-  			br = new BufferedReader(isr);
-  
-  			// データを受信する
-  			String serverData = br.readLine();
-  
-  			// 受信したデータを出力する
-  			System.out.println("受信データ: "+serverData);
-  
-  		} catch (IOException e) {
-  			System.err.println("クライアントエラー");
-  			System.exit(1);
-  		}
-  	}
-  }
+ import java.io.*;
+ import java.net.*;
+ import java.util.*;
+ 
+ public class Netclock{
+ 	public static void main(String[] atgs){
+ 		byte[] buff = new byte[1024];
+ 		ServerSocket servsock = null;
+ 		Socket sock;
+ 		OutputStream  out;
+ 		InputStream instr;
+ 		String	msg;
+ 		int i;
+ 		Date d;
+ 		boolean cont = true;
+ 
+ 		try{
+ 			servsock = new ServerSocket(6000, 300);
+ 
+ 			while(true){
+ 				sock 	=	servsock.accept();
+ 					System.out.println("conekte");
+ 
+ 					d = new Date();
+ 				
+ 				msg  = "\n"
+ 				+"ALOHA, this is Rafael Netclock server"+"\n"
+ 				+d.toString() +
+ 				"\n"+	"Onbrigado" + "\n";
+ 				
+ 				out =	sock.getOutputStream();
+ 
+ 				for(i=0; i<msg.length();	i++)
+ 					out.write((int)msg.charAt(i));
+ 				out.write('\n');
+ 				instr = sock.getInputStream();
+ 
+ 				while(cont){
+ 					try{
+ 						int n = instr.read(buff);
+ 						
+ 					}catch(IOException e){
+ 						cont = false;
+ 					}
+ 				}
+ 
+ 				sock.close();
+ 			}
+ 		}catch (IOException e){
+ 			System.exit(1);
+ 		}
+ 	}
+ }
